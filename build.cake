@@ -77,7 +77,6 @@ Task("Package-Only")
         CopyFiles(jsInputSrc + "/*.*", dist + "/js/");
         CopyFiles(cssInputSrc + "/*.*", dist + "/css/");
         NpmPack();
-    }
-});
+    });
 
 RunTarget(target);
