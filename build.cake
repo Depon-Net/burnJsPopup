@@ -51,6 +51,7 @@ Task("Run")
 
 Task("Package")
     .IsDependentOn("Build")
+    .IsDependentOn("Package-Only")
     .Does(() =>
     {
         CopyFiles(jsInputSrc + "/*.*", dist + "/js/");
@@ -69,5 +70,14 @@ Task("Publish")
             }
         );
     });
+
+Task("Package-Only")
+    .Does(() =>
+    {
+        CopyFiles(jsInputSrc + "/*.*", dist + "/js/");
+        CopyFiles(cssInputSrc + "/*.*", dist + "/css/");
+        NpmPack();
+    }
+});
 
 RunTarget(target);
